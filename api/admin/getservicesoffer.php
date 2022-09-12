@@ -6,7 +6,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'POST':
      
-			$query = " SELECT * FROM `services_offer` ";
+			$query = " SELECT * FROM `services_offer`  ";
             $result = mysqli_query($db,$query); 
 
             while($row = mysqli_fetch_array($result)){
@@ -14,10 +14,16 @@ switch ($method) {
                     $data[] = $row;
               
              } 
-
-            echo json_encode($data);
+            
+           echo json_encode($data);
          
 
         break;
 
+      
+
+
 }
+
+
+
