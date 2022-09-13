@@ -58,6 +58,18 @@ switch ($method) {
             } 
           
             echo json_encode($response);
+        }else if ($table == 'users'){
+                  
+            $sql = "DELETE FROM `users` WHERE PK_userID=? ";
+            $stmt = $db->prepare($sql);
+            $stmt ->bind_param("s",$id);
+            if($stmt->execute()){
+                $response = ['status'=> 1,'message'=> 'Deleted Successfully.'];
+            }else {
+                $response = ['status'=> 0,'message'=>'Failed to Delete.'];
+            } 
+          
+            echo json_encode($response);
         }
 
     

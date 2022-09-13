@@ -5,8 +5,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'POST':
-     
-			$query = " SELECT * FROM `services` ORDER by created_at desc; ";
+            
+        $data = [];
+        
+			$query = " SELECT * FROM `users` where isverified =0 ";
             $result = mysqli_query($db,$query); 
 
             while($row = mysqli_fetch_array($result)){
@@ -15,7 +17,11 @@ switch ($method) {
               
              } 
 
-            echo json_encode($data);
+           
+                echo json_encode($data);
+             
+
+           
          
 
         break;
