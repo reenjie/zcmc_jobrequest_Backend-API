@@ -5,7 +5,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'POST':
-     
+        $data = [];
 			$query = " SELECT * FROM `department` ORDER By created_at desc ";
             $result = mysqli_query($db,$query); 
 

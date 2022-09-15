@@ -5,7 +5,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'POST':
-     
+      $data = [];
 			$query = " SELECT * FROM `services_offer`  ";
             $result = mysqli_query($db,$query); 
 
