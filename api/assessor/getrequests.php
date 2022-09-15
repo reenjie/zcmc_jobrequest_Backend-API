@@ -6,10 +6,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'POST':
         $details = json_decode(file_get_contents('php://input'));
-
-       $id =  $details->userid;
-
-		$query = " SELECT * FROM `users` where PK_userID=? ";
+        $id = $details->serviceID;
+        $query = " SELECT * FROM `request` where FK_serviceID=? ";
 
         $stmt = $db->prepare($query);
         $stmt->bind_param("s", $id);
