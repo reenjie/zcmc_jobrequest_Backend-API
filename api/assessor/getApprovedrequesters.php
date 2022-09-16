@@ -7,9 +7,10 @@ switch ($method) {
     case 'POST':
         $details = json_decode(file_get_contents('php://input'));
         $id = $details->serviceID;
-        $query = " SELECT * FROM `request` where FK_serviceID=? and status = 1 ";
+        $query = "SELECT * FROM `users` where PK_userID in (select FK_userID from request where status !=1 and FK_serviceID = ? );";
 
-        $stmt = $db->prepare($query);
+   
+         $stmt = $db->prepare($query);
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();
