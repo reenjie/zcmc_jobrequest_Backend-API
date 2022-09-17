@@ -10,15 +10,19 @@ switch ($method) {
         $prioritization = $details->prioritization;
         $typeofrepair = $details->typeofrepair;
         $recommendation = $details->recommendation;
+        $year = $details->years;
+        $months=$details->months;
+        $weeks=$details->weeks;
+        $days = $details->days;
         $status=2;
+        $date = date('Y-m-d H:i:s');
+       
 
-        echo $id.$prioritization.$typeofrepair.$recommendation;
 
-
-        $query = " UPDATE `request` SET `status`=?,`prioritization`=?,`typeofrepair`=?,`recommendation`=?  WHERE PK_requestID = ?";
+        $query = " UPDATE `request` SET `status`=?,`prioritization`=?,`typeofrepair`=?,`recommendation`=?, `dt_assessed`=?,`tf_years`=?,`tf_months`=?,`tf_weeks`=?,`tf_days`=?  WHERE PK_requestID = ?";
 
         $stmt = $db->prepare($query);
-        $stmt->bind_param("sssss",$status,$prioritization,$typeofrepair,$recommendation,$id);
+        $stmt->bind_param("ssssssssss",$status,$prioritization,$typeofrepair,$recommendation,$date,$year,$months,$weeks,$days,$id);
        
         if($stmt->execute()){
             $response = ['status'=> 1,'message'=>'Request Approved Successfully.'];
