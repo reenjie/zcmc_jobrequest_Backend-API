@@ -13,10 +13,10 @@ switch ($method) {
         $status = 3;
 
        
-        $query = " UPDATE `request` SET `status`=?,`request_status`=? WHERE PK_requestID = ?";
+        $query = " UPDATE `request` SET `status`=?,`request_status`=? ,`dt_accomplished` =? WHERE PK_requestID = ?";
 
         $stmt = $db->prepare($query);
-        $stmt->bind_param("sss",$status,$request_stats,$id);
+        $stmt->bind_param("ssss",$status,$request_stats,$date,$id);
        
         if($stmt->execute()){
             $response = ['status'=> 1,'message'=>'Request updated Successfully.'];
