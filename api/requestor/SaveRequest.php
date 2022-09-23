@@ -52,9 +52,9 @@ switch ($method) {
                                           }
                                       
                                  }else {
-                                        $checkRequest = "select * from request where FK_userID =? and FK_workID=? and FK_serviceID =? and FK_serviceOfferID=? and isset = ? ";
+                                        $checkRequest = "select * from request where FK_userID =? and FK_workID=? and FK_serviceID =? and FK_serviceOfferID=? and isset in (0,1) and status in (0,1,2) ";
                                         $stmt = $db->prepare($checkRequest);
-                                        $stmt->bind_param("sssss",$userid,$typeofwork,$servicesid,$serviceOfferid,$isset);
+                                        $stmt->bind_param("ssss",$userid,$typeofwork,$servicesid,$serviceOfferid);
                                         $stmt->execute();
                                         $checkREquestresult = $stmt->get_result();
                                         if(mysqli_num_rows($checkREquestresult) >=1) {

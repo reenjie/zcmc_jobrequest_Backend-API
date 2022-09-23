@@ -35,7 +35,7 @@ switch ($method) {
         users INNER JOIN request on users.PK_userID = request.FK_userID  or request.FK_serviceOfferID = NULL 
         INNER JOIN worktype on worktype.PK_workTypeID = request.FK_workID  
         where
-        request.FK_serviceID = ? and request.status= 2 ORDER BY totaldays asc";
+        request.FK_serviceID = ? and request.status= 2 and request.isset=1 ORDER BY totaldays asc";
 
         $stmt = $db->prepare($query);
         $stmt->bind_param("s", $id);

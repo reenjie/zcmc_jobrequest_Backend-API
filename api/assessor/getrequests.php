@@ -7,7 +7,7 @@ switch ($method) {
     case 'POST':
         $details = json_decode(file_get_contents('php://input'));
         $id = $details->serviceID;
-        $query = " SELECT * FROM `request` where FK_serviceID=? and status = 1 ";
+        $query = " SELECT * FROM `request` where FK_serviceID=? and status = 1 and isset =1 ";
 
         $stmt = $db->prepare($query);
         $stmt->bind_param("s", $id);
