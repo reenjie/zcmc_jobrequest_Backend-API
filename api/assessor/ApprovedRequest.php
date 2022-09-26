@@ -18,13 +18,14 @@ switch ($method) {
         $date = date('Y-m-d H:i:s');
         $request_status = "WORK ON GOING";
         $message = "Currently Working";
+        $assessedby = $details->assessedby;
        
 
 
         $query = " UPDATE `request` SET `status`=?,`prioritization`=?,`typeofrepair`=?,`recommendation`=?, `dt_assessed`=?,`tf_years`=?,`tf_months`=?,`tf_weeks`=?,`tf_days`=? ,
-         `request_status`=? ,`status_message`=?  WHERE PK_requestID = ?";
+         `request_status`=? ,`status_message`=?,`assessedby`=?  WHERE PK_requestID = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param("ssssssssssss",$status,$prioritization,$typeofrepair,$recommendation,$date,$year,$months,$weeks,$days,$request_status,$message,$id);
+        $stmt->bind_param("sssssssssssss",$status,$prioritization,$typeofrepair,$recommendation,$date,$year,$months,$weeks,$days,$request_status,$message,$assessedby,$id);
        
         if($stmt->execute()){
             $response = ['status'=> 1,'message'=>'Request Approved Successfully.'];

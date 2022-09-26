@@ -11,12 +11,16 @@ switch ($method) {
         $id = $details->id;
         $request_stats = "ACCOMPLISHED";
         $status = 3;
+        $repairedby = $details->repairedby;
+        $remarks = $details->remarks;
+        $dtstart = $details->dtstart;
+        $dtend = $details->dtend;
 
        
-        $query = " UPDATE `request` SET `status`=?,`request_status`=? ,`dt_accomplished` =? WHERE PK_requestID = ?";
+        $query = " UPDATE `request` SET `status`=?,`request_status`=? ,`dt_accomplished` =?,`repairedby`=?,`accomplishment_remarks`=?,`dtstart`=?,`dtend`=? WHERE PK_requestID = ?";
 
         $stmt = $db->prepare($query);
-        $stmt->bind_param("ssss",$status,$request_stats,$date,$id);
+        $stmt->bind_param("ssssssss",$status,$request_stats,$date,$repairedby,$remarks,$dtstart,$dtend,$id);
        
         if($stmt->execute()){
             $response = ['status'=> 1,'message'=>'Request updated Successfully.'];
