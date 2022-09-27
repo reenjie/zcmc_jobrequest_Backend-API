@@ -22,16 +22,17 @@ switch ($method) {
         $fl = 0;
         $isverified=1;
         $id = $details->id;
+        $sec = $details->secretary;
 
         $date = date('Y-m-d H:i:s');
 
              
         $sql = "UPDATE `users` SET `firstname`=?,`lastname`=?,
                 `email`=?,`contact_no`=?,`address`=?,`user_type`=?,`FK_departmentID`=?,
-                `specialty`=?,`position`=?,`FK_servicesID`=?,`updated_at`=? WHERE PK_userID=?";
+                `specialty`=?,`position`=?,`FK_servicesID`=?,`updated_at`=?,`secretary`=? WHERE PK_userID=?";
                 $stmt = $db->prepare($sql);
         
-                $stmt ->bind_param("ssssssssssss",$firstname,$lastname,$email,$contactno,$address,$usertype,$department,$specialty,$position,$services,$date,$id);
+                $stmt ->bind_param("sssssssssssss",$firstname,$lastname,$email,$contactno,$address,$usertype,$department,$specialty,$position,$services,$date,$sec,$id);
         
                 if($stmt->execute()){
                     $response = ['status'=> 1,'message'=>'Account Updated Successfully.'];

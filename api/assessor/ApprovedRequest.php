@@ -14,7 +14,7 @@ switch ($method) {
         $months=$details->months;
         $weeks=$details->weeks;
         $days = $details->days;
-        $status=2;
+        $status= $details->status;
         $date = date('Y-m-d H:i:s');
         $request_status = "WORK ON GOING";
         $message = "Currently Working";

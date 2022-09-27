@@ -6,9 +6,10 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'POST':
         $details = json_decode(file_get_contents('php://input'));
-        $id = $details->userID;
-        $query = "SELECT 
-         request.PK_requestID,
+        $id = $details->department;
+
+     $query = "SELECT 
+          request.PK_requestID,
   		request.FK_userID,
         users.firstname,
         users.lastname,
@@ -48,7 +49,7 @@ switch ($method) {
         request.status
         from
         users INNER JOIN request on users.PK_userID = request.FK_userID  or request.FK_serviceOfferID = NULL 
-        INNER JOIN worktype on worktype.PK_workTypeID = request.FK_workID where request.FK_userID = ? and request.isset=1  order by totaldays asc";
+        INNER JOIN worktype on worktype.PK_workTypeID = request.FK_workID where users.FK_departmentID = ? and request.isset=1  order by totaldays asc";
 
        
 
@@ -64,7 +65,7 @@ switch ($method) {
             }
         }
 
-            echo json_encode($data);
+            echo json_encode($data); 
          
 
         break;
